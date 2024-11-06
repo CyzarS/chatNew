@@ -31,7 +31,7 @@
     document.getElementById('send').onclick = () => {
       const message = document.getElementById('message').value;
       if (message) {
-        socket.emit('message', message);
+        socket.emit('message', { username, message, timestamp: new Date().toISOString() });
         document.getElementById('message').value = '';
       }
     };
@@ -40,7 +40,8 @@
       const messages = document.getElementById('messages');
       const messageElement = document.createElement('div');
       messageElement.className = msg.username === username ? 'my-message' : 'other-message';
-      messageElement.textContent = `${msg.username}: ${msg.message}`;
+      const time = new Date(msg.timestamp).toLocaleTimeString();
+      messageElement.textContent = `${time} - ${msg.username}: ${msg.message}`;
       messages.appendChild(messageElement);
     });
 

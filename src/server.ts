@@ -24,7 +24,8 @@ io.on('connection', (socket) => {
 
   socket.on('message', (message) => {
     const username = socket.data.username;
-    io.emit('message', { username, message });
+    const timestamp = new Date().toISOString();
+    io.emit('message', { username, message: message.message, timestamp });
   });
 
   socket.on('disconnect', () => {
