@@ -43,6 +43,7 @@
       const time = new Date(msg.timestamp).toLocaleTimeString();
       messageElement.textContent = `${time} - ${msg.username}: ${msg.message}`;
       messages.appendChild(messageElement);
+      messages.scrollTop = messages.scrollHeight; // Desplaza el contenedor hacia abajo
     });
 
     socket.on('user-joined', (msg) => {
@@ -51,6 +52,7 @@
       messageElement.className = 'system-message';
       messageElement.textContent = msg;
       messages.appendChild(messageElement);
+      messages.scrollTop = messages.scrollHeight; // Desplaza el contenedor hacia abajo
     });
 
     socket.on('user-left', (msg) => {
@@ -59,6 +61,7 @@
       messageElement.className = 'system-message';
       messageElement.textContent = msg;
       messages.appendChild(messageElement);
+      messages.scrollTop = messages.scrollHeight; // Desplaza el contenedor hacia abajo
     });
   </script>
 </body>
